@@ -1,5 +1,5 @@
-// COMSC-210 | Lab 25 | Jed Aficial
-// github link: https://github.com/jaficial/210-lab-25
+// COMSC-210 | Lab 26 | Jed Aficial
+// github link: https://github.com/jaficial/210-lab-26
 
 #include <iostream>
 #include <iomanip>
