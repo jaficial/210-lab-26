@@ -1,6 +1,6 @@
 // COMSC-210 | Lab 26 | Jed Aficial
 // github link: https://github.com/jaficial/210-lab-26
-
+//
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -13,6 +13,7 @@
 using namespace std;
 using namespace std::chrono;
 
+// ORGANIZE CODE FIRST
 string TEST_CODE = "TESTCODE";
 
 int main() {
