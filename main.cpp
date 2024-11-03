@@ -169,8 +169,6 @@ int main() {
                 auto set_example_delete = duration_cast<microseconds>(end - start);
                 data_results[2][j][3] = set_example_delete.count();
             }
-
-            int set_example_sort = 0;
         }
     }
 
@@ -183,10 +181,10 @@ int main() {
                 data_results[0][15][2] = data_results[0][15][2] + data_results[0][j][2]; // all insert values
                 data_results[0][15][3] = data_results[0][15][3] + data_results[0][j][3]; // all delete values
             }
-            data_results[0][15][0] = data_results[0][15][0] / 15;
-            data_results[0][15][0] = data_results[0][15][0] / 15;
-            data_results[0][15][0] = data_results[0][15][0] / 15;
-            data_results[0][15][0] = data_results[0][15][0] / 15;
+            data_results[0][15][0] = data_results[0][15][0] / 15; // vector average for read
+            data_results[0][15][1] = data_results[0][15][0] / 15; // vector average for sort
+            data_results[0][15][2] = data_results[0][15][0] / 15; // vector average for insert
+            data_results[0][15][3] = data_results[0][15][0] / 15; // vector average for delete
             
         }
 
@@ -197,6 +195,10 @@ int main() {
                 data_results[1][15][2] = data_results[1][15][2] + data_results[1][j][2]; // all insert values
                 data_results[1][15][3] = data_results[1][15][3] + data_results[1][j][3]; // all delete values
             }
+            data_results[1][15][0] = data_results[1][15][0] / 15; // list average for read
+            data_results[1][15][1] = data_results[1][15][1] / 15; // list average for sort
+            data_results[1][15][2] = data_results[1][15][2] / 15; // list average for insert
+            data_results[1][15][3] = data_results[1][15][3] / 15; // list average for delete
         }
 
         if(i == 2){ // adding up set data
@@ -206,17 +208,22 @@ int main() {
                 data_results[2][15][2] = data_results[2][15][2] + data_results[2][j][2]; // all insert values
                 data_results[2][15][3] = data_results[2][15][3] + data_results[2][j][3]; // all delete values
             }
+            data_results[2][15][0] = data_results[2][15][0] / 15; // set average for read
+            // sets are already sorted
+            data_results[2][15][2] = data_results[2][15][2] / 15; // set average for insert
+            data_results[2][15][3] = data_results[2][15][3] / 15; // set average for delet
         }
     }
-
-
+    int set_example_sort = 0;
+    // The averages are held in the i and j positions in data_results[i][15][j]
     
     // output of the data
-    // cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
-    // cout << setw(10) << "Read" << setw(10) << vector_example_read.count() << setw(10) << list_example_read.count() << setw(10) << set_example_read.count() << endl;
-    // cout << setw(10) << "Sort" << setw(10) << vector_example_sort.count() << setw(10) << list_example_sort.count() << setw(10) << set_example_sort << endl;
-    // cout << setw(10) << "Insert" << setw(10) << vector_example_insert.count() << setw(10) << list_example_insert.count() << setw(10) << set_example_insert.count() << endl;
-    // cout << setw(10) << "Delete" << setw(10) << vector_example_delete.count() << setw(10) << list_example_delete.count() << setw(10) << set_example_delete.count() << endl;
+    cout << "Number of simulations: 15" << endl;
+    cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
+    cout << setw(10) << "Read" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][0] << setw(10) << data_results[2][15][0] << endl;
+    cout << setw(10) << "Sort" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][1] << setw(10) << set_example_sort << endl;
+    cout << setw(10) << "Insert" << setw(10) << vector_example_insert.count() << setw(10) << list_example_insert.count() << setw(10) << set_example_insert.count() << endl;
+    cout << setw(10) << "Delete" << setw(10) << vector_example_delete.count() << setw(10) << list_example_delete.count() << setw(10) << set_example_delete.count() << endl;
 
     return 0;
 }
