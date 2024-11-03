@@ -86,34 +86,39 @@ int main() {
                     list_example.push_back(temp_string);
                 }
                 auto end = chrono::high_resolution_clock::now();
+                auto list_example_read = duration_cast<microseconds>(end - start);
+                fin.close();
+                data_results[1][j][0] = list_example_read.count();
+
+                // divider (erase later) ---------------------------
+                // sorting the list
+                start = chrono::high_resolution_clock::now();
+                list_example.sort();
+                end = chrono::high_resolution_clock::now();
+                auto list_example_sort = duration_cast<microseconds>(end - start);
+                data_results[1][j][1] = list_example_sort.count();
+
+                // divider (erase later) -----------------------------
+                // inserting into the list
+                int list_midpoint = list_example.size() / 2;
+                start = chrono::high_resolution_clock::now();
+                auto list_iter = list_example.begin();
+                for (int iter = 0; iter < list_midpoint; iter++){
+                    list_iter++;
+                }
+
+                list_example.insert(list_iter, TEST_CODE);
+                end = chrono::high_resolution_clock::now();
+                auto list_example_insert = duration_cast<microseconds>(end - start);
+                data_results[1][j][2] = list_example_insert.count();
                 
+
+
             }
         }    
         }
         
     }
-
-
-
-    // beginning collecting data for LISTS
-    ifstream fin_list("codes.txt");
-    list<string> list_example;
-
-    // reading the file into the list
-    start = chrono::high_resolution_clock::now();
-    for (int i = 0; i < 20000; i++){
-        getline(fin_list, temp_string);
-        list_example.push_back(temp_string);
-    }
-    end = chrono::high_resolution_clock::now();
-    auto list_example_read = duration_cast<microseconds>(end - start);
-    fin_list.close();
-
-    // sorting the list
-    start = chrono::high_resolution_clock::now();
-    list_example.sort();
-    end = chrono::high_resolution_clock::now();
-    auto list_example_sort = duration_cast<microseconds>(end - start);
 
     // inserting "TESTCODE" into the middle of the list
     int list_midpoint = list_example.size();
