@@ -34,10 +34,10 @@ int main() {
     int data_results[TYPES][16][RESULTS];
     string temp_string;
 
-    // main for loop
+    // main for loop, loops 3 times for each type of data structure
     for (int i = 0; i < TYPES; i++){
         if (i == 0){ // if i == 0, which represents the vector sets of data
-            for (int j = 0; j < TRIALS; j++){ // trials for each type
+            for (int j = 0; j < TRIALS; j++){ // trials for each "race"
                 vector<string> vector_example;
                 ifstream fin("codes.txt");
                 auto start = chrono::high_resolution_clock::now();
@@ -51,7 +51,6 @@ int main() {
                 data_results[0][j][0] = vector_example_read.count(); 
                 fin.close();
 
-                // divider (erase later) ------------------------
                 // sorting the vector
                 start = chrono::high_resolution_clock::now();
                 sort(vector_example.begin(), vector_example.end());
@@ -59,7 +58,6 @@ int main() {
                 auto vector_example_sort = duration_cast<microseconds>(end - start);
                 data_results[0][j][1] = vector_example_sort.count();
 
-                // divider (erase later) ------------------------
                 // inserting into the vector
                 int vector_midpoint = vector_example.size() / 2;
                 start = chrono::high_resolution_clock::now();
@@ -68,7 +66,6 @@ int main() {
                 auto vector_example_insert = duration_cast<microseconds>(end - start);
                 data_results[0][j][2] = vector_example_insert.count();
 
-                // divider (erase later) ------------------------
                 // deleting the middle element
                 start = chrono::high_resolution_clock::now();
                 vector_example.erase(vector_example.begin() + vector_midpoint);
@@ -93,7 +90,6 @@ int main() {
                 fin.close();
                 data_results[1][j][0] = list_example_read.count();
 
-                // divider (erase later) ---------------------------
                 // sorting the list
                 start = chrono::high_resolution_clock::now();
                 list_example.sort();
@@ -101,7 +97,6 @@ int main() {
                 auto list_example_sort = duration_cast<microseconds>(end - start);
                 data_results[1][j][1] = list_example_sort.count();
 
-                // divider (erase later) -----------------------------
                 // inserting into the list
                 int list_midpoint = list_example.size() / 2;
                 start = chrono::high_resolution_clock::now();
@@ -115,7 +110,6 @@ int main() {
                 auto list_example_insert = duration_cast<microseconds>(end - start);
                 data_results[1][j][2] = list_example_insert.count();
 
-                // divider (erase later) -----------------------------
                 // deleteing from the list
                 start = chrono::high_resolution_clock::now();
                 auto list_iter_del = list_example.begin();
@@ -144,8 +138,7 @@ int main() {
                 auto set_example_read = duration_cast<microseconds>(end - start);
                 fin.close();
                 data_results[2][j][0] = set_example_read.count();
-
-                // divider (erase later) -------------------------
+                // no need to sort, due to sets already sorting data automatically
                 // Inserting into the set
                 auto set_iter = set_example.begin();
                 int set_midpoint = set_example.size() / 2;
@@ -158,7 +151,6 @@ int main() {
                 auto set_example_insert = duration_cast<microseconds>(end - start);
                 data_results[2][j][2] = set_example_insert.count();
 
-                // divider (erase later) -------------------------
                 // Deleting from the set
                 auto set_iter_del = set_example.begin();
                 start = chrono::high_resolution_clock::now();
@@ -176,7 +168,7 @@ int main() {
     // for adding up all the times for each set of data 
     for (int i = 0; i < TYPES; i++){
         if (i == 0){ // adding up vector data
-        // need to initialize each element with 0 before adding all the values together
+        // need to initialize each element with 0 before adding all the values together (might access random memory if not 0)
         data_results[0][15][0] = 0;
         data_results[0][15][1] = 0;
         data_results[0][15][2] = 0;
