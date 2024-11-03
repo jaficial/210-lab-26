@@ -16,6 +16,7 @@ using namespace std::chrono;
 string TEST_CODE = "TESTCODE";
 
 // first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
+
 int main() {
     // COLLECTING DATA FOR VECTORS
     ifstream fin_vector("codes.txt");
