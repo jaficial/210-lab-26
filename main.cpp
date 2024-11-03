@@ -30,7 +30,7 @@ const int FILE_SIZE = 20000;
 // currently rewriting my code to organize it in loops, and to achieve repeatability
 int main() {
     // COLLECTING DATA FOR VECTORS
-    int data_results[TYPES][TRIALS][RESULTS];
+    int data_results[TYPES][16][RESULTS];
     string temp_string;
 
     // main for loop
@@ -173,18 +173,25 @@ int main() {
         }
     }
 
-    for (int i = 0; i < 15; i++){
-        
+    // for adding up all the times for each set of data 
+    for (int i = 0; i < TYPES; i++){
+        if (i == 0){ // adding up vector data
+            
+            for (int j = 0; j < TRIALS; j++){
+                data_results[0][15][0] = data_results[0][15][0] + data_results[0][j][0]; // tested, all works as expected
+                cout << data_results[0][j][3] << endl; // delete is possibly not working
+            }
+        }
     }
 
 
     
     // output of the data
-    cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
-    cout << setw(10) << "Read" << setw(10) << vector_example_read.count() << setw(10) << list_example_read.count() << setw(10) << set_example_read.count() << endl;
-    cout << setw(10) << "Sort" << setw(10) << vector_example_sort.count() << setw(10) << list_example_sort.count() << setw(10) << set_example_sort << endl;
-    cout << setw(10) << "Insert" << setw(10) << vector_example_insert.count() << setw(10) << list_example_insert.count() << setw(10) << set_example_insert.count() << endl;
-    cout << setw(10) << "Delete" << setw(10) << vector_example_delete.count() << setw(10) << list_example_delete.count() << setw(10) << set_example_delete.count() << endl;
+    // cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
+    // cout << setw(10) << "Read" << setw(10) << vector_example_read.count() << setw(10) << list_example_read.count() << setw(10) << set_example_read.count() << endl;
+    // cout << setw(10) << "Sort" << setw(10) << vector_example_sort.count() << setw(10) << list_example_sort.count() << setw(10) << set_example_sort << endl;
+    // cout << setw(10) << "Insert" << setw(10) << vector_example_insert.count() << setw(10) << list_example_insert.count() << setw(10) << set_example_insert.count() << endl;
+    // cout << setw(10) << "Delete" << setw(10) << vector_example_delete.count() << setw(10) << list_example_delete.count() << setw(10) << set_example_delete.count() << endl;
 
     return 0;
 }
