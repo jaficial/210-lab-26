@@ -129,36 +129,35 @@ int main() {
 
             }
         }
-        if (i == 2) { // if i ==2, which represents the set sets of data
+        if (i == 2) { // if i == 2, which represents the set sets of data
             for (int j = 0; j < TRIALS; j++){
                 set<string> set_example;
                 ifstream fin("codes.txt");
+                auto start = chrono::high_resolution_clock::now();
                 for (int k = 0; k < FILE_SIZE; k++){
-                    
+                    getline(fin, temp_string);
+                    set_example.insert(temp_string);
+                }
+                auto end = chrono::high_resolution_clock::now();
+                auto set_example_read = duration_cast<microseconds>(end - start);
+                fin.close();
+                data_results[2][j][0] = set_example_read.count();
+
+                // divider (erase later) -------------------------
+                // Inserting into the set
+                auto set_iter = set_example.begin();
+                int set_midpoint = set_example.size() / 2;
+
+                for (int iter = 0; iter < set_midpoint; iter++){
+                    set_iter++;
                 }
             }
-
+            int set_example_sort = 0;
         }
 
         
         
     }
-
-    // beginning collecting data for SETS
-    ifstream fin_set("codes.txt");
-    set<string> set_example;
-    // reading the file into the set
-    start = chrono::high_resolution_clock::now();
-    for (int i = 0; i < 20000; i++){
-        getline(fin_set, temp_string);
-        set_example.insert(temp_string);
-    }
-    end = chrono::high_resolution_clock::now();
-    auto set_example_read = duration_cast<microseconds>(end - start);
-    fin_set.close();
-
-    // sorting the set
-    int set_example_sort = -1; // Sets are already sorted
 
     // Inserting "TESTCODE" into the middle of the set
     auto set_iter = set_example.begin(); // need to receive iterator starting at the beginning of the set, similar to lists
