@@ -22,7 +22,7 @@ const int FILE_SIZE = 20000;
 /* first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
       - first cube of array will represent the 3 tests (size of 3)
         - 0 = vector, 1 = list, 2 = sets
-      - second cube of array will represent 15 trials for each of the 3 sets (size of 45 total elements? )
+      - second cube of array will represent 15 trials for each of the 3 types (size of 45 total elements? )
       - third cube of array will hold the average of each set of trials (size of 4)
         - 0 = read, 1 = sort, 2 = insert, 3 = delete
 */
@@ -31,37 +31,43 @@ const int FILE_SIZE = 20000;
 int main() {
     // COLLECTING DATA FOR VECTORS
     int data_results[TYPES][TRIALS][RESULTS];
-    vector<string> vector_example;
     string temp_string;
 
-    // reading the file contents into the vector
+    // main for loop
     for (int i = 0; i < TYPES; i++){
         if (i == 0){ // if i == 0, which represents the vector
-            for (int j = 0; j < TRIALS; j++){
+            for (int j = 0; j < TRIALS; j++){ // trials for each type
+                vector<string> vector_example;
                 ifstream fin("codes.txt");
                 auto start = chrono::high_resolution_clock::now();
 
-                for (int k = 0; k < FILE_SIZE; k++){
-                    getline(fin_vector, temp_string);
+                for (int k = 0; k < FILE_SIZE; k++){ // reading into the file
+                    getline(vector_example, temp_string);
                     vector_example.push_back(temp_string);
                 }
                 auto end = chrono::high_resolution_clock::now();
                 auto vector_example_read = duration_cast<microseconds>(end - start);
-                data_results[0][j][0] = vector_example_read.count();
+                data_results[0][j][0] = vector_example_read.count(); 
                 fin.close();
+
+                // divider (erase later) ------------------------
+                // sorting the vector
+                start = chrono::high_resolution_clock::now();
+                sort(vector_example.begin(), vector_example.end());
+                end = chrono::high_resolution_clock::now();
+                auto vector_example_sort = duration_cast<microseconds>(end - start);
+                data_results[0][j][1];
+
+                // divider (erase later) ------------------------
+                // inserting into the vector
+                start = chrono::high_resolution_clock::now();
+                int vector_midpoint = vector_example.size() / 2;
+                vector_example
             }
         }
         
     }
-    
 
-
-
-    // sorting the vector
-    start = chrono::high_resolution_clock::now();
-    sort(vector_example.begin(), vector_example.end()); // CITED from "Lesson Code: STD::vector" module from canvas
-    end = chrono::high_resolution_clock::now();
-    auto vector_example_sort = duration_cast<microseconds>(end - start);
 
     // inserting "TESTCODE" into the middle of the vector
     int vector_midpoint = vector_example.size();
