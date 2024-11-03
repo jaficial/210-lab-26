@@ -13,10 +13,11 @@
 using namespace std;
 using namespace std::chrono;
 
-string TEST_CODE = "TESTCODE";
+const string TEST_CODE = "TESTCODE";
 const int TYPES = 3;
 const int TRIALS = 15;
 const int RESULTS = 4;
+const int FILE_SIZE = 20000;
 
 /* first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
       - first cube of array will represent the 3 tests (size of 3)
@@ -31,23 +32,29 @@ int main() {
     // COLLECTING DATA FOR VECTORS
     int data_results[TYPES][TRIALS][RESULTS];
     vector<string> vector_example;
-    for (int i = 0; i < TYPES; i++){
-        ifstream fin("codes.txt");
-        auto start = chrono::high_resolution_clock;
+    string temp_string;
 
+    // reading the file contents into the vector
+    for (int i = 0; i < TYPES; i++){
+        if (i == 0){ // if i == 0, which represents the vector
+            for (int j = 0; j < TRIALS; j++){
+                ifstream fin("codes.txt");
+                auto start = chrono::high_resolution_clock::now();
+
+                for (int i = 0; i < FILE_SIZE; i++){
+                    getline(fin_vector, temp_string);
+                    vector_example.push_back(temp_string);
+                }
+                auto end = chrono::high_resolution_clock::now();
+                auto vector_example_read = duration_cast<microseconds>(end - start);
+                data_results[0][j] = vector_example_read.count();
+                fin.close();
+            }
+        }
+        
     }
-    ifstream fin_vector("codes.txt");
-    auto start = chrono::high_resolution_clock::now();
-    vector<string> vector_example;
-    string temp_string; 
-    // reading file into the vector:
-    for (int i = 0; i < 20000; i++){
-        getline(fin_vector, temp_string);
-        vector_example.push_back(temp_string);
-    }
-    fin_vector.close();
-    auto end = chrono::high_resolution_clock::now();
-    auto vector_example_read = duration_cast<microseconds>(end - start);
+    
+
 
 
     // sorting the vector
