@@ -35,14 +35,14 @@ int main() {
 
     // main for loop
     for (int i = 0; i < TYPES; i++){
-        if (i == 0){ // if i == 0, which represents the vector
+        if (i == 0){ // if i == 0, which represents the vector sets of data
             for (int j = 0; j < TRIALS; j++){ // trials for each type
                 vector<string> vector_example;
                 ifstream fin("codes.txt");
                 auto start = chrono::high_resolution_clock::now();
 
-                for (int k = 0; k < FILE_SIZE; k++){ // reading into the file
-                    getline(vector_example, temp_string);
+                for (int k = 0; k < FILE_SIZE; k++){ // reading the file into the vector
+                    getline(fin, temp_string);
                     vector_example.push_back(temp_string);
                 }
                 auto end = chrono::high_resolution_clock::now();
@@ -56,33 +56,44 @@ int main() {
                 sort(vector_example.begin(), vector_example.end());
                 end = chrono::high_resolution_clock::now();
                 auto vector_example_sort = duration_cast<microseconds>(end - start);
-                data_results[0][j][1];
+                data_results[0][j][1] = vector_example_sort.count();
 
                 // divider (erase later) ------------------------
                 // inserting into the vector
-                start = chrono::high_resolution_clock::now();
                 int vector_midpoint = vector_example.size() / 2;
-                vector_example
+                start = chrono::high_resolution_clock::now();
+                vector_example.insert(vector_example.begin() + vector_midpoint, TEST_CODE);
+                end = chrono::high_resolution_clock::now();
+                auto vector_example_insert = duration_cast<microseconds>(end - start);
+                data_results[0][j][2] = vector_example_insert.count();
+
+                // divider (erase later) ------------------------
+                // deleting the middle element
+                start = chrono::high_resolution_clock::now();
+                vector_example.erase(vector_example.begin() + vector_midpoint);
+                end = chrono::high_resolution_clock::now();
+                auto vector_example_delete = duration_cast<microseconds>(end - start);
             }
+
+        if (i == 1) { // if i == 1, which represents the list sets of data
+            for (int j = 0; j < TRIALS; j++){
+                list<string> list_example;
+                ifstream fin("codes.txt");
+                auto start = chrono::high_resolution_clock::now();
+
+                for (int k = 0; k < FILE_SIZE; k++){ // reading the file into the list
+                    getline(fin, temp_string);
+                    list_example.push_back(temp_string);
+                }
+                auto end = chrono::high_resolution_clock::now();
+                
+            }
+        }    
         }
         
     }
 
 
-    // inserting "TESTCODE" into the middle of the vector
-    int vector_midpoint = vector_example.size();
-    vector_midpoint = (vector_midpoint / 2) - 1; // -1 since range is between 0-19999
-    
-    start = chrono::high_resolution_clock::now();
-    vector_example.insert(vector_example.begin() + vector_midpoint, TEST_CODE);
-    end = chrono::high_resolution_clock::now();
-    auto vector_example_insert = duration_cast<microseconds>(end - start);
-
-    // deleting the middle element from the vector
-    start = chrono::high_resolution_clock::now();
-    vector_example.erase(vector_example.begin() + vector_midpoint); // CITED from https://cplusplus.com/reference/vector/vector/erase/ to learn how to use ".erase()" function
-    end = chrono::high_resolution_clock::now();
-    auto vector_example_delete = duration_cast<microseconds>(end - start);
 
     // beginning collecting data for LISTS
     ifstream fin_list("codes.txt");
