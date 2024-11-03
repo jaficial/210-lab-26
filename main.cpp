@@ -15,10 +15,16 @@ using namespace std::chrono;
 
 string TEST_CODE = "TESTCODE";
 
-// first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
-
+/* first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
+      - first cube of array will represent the 3 tests (size of 3)
+        - 0 = vector, 1 = list, 2 = sets
+      - second cube of array will represent 15 trials for each of the 3 sets (size of 45 total elements? )
+      - third cube of array will hold the average of each set of trials (size of 4)
+        - 0 = read, 1 = sort, 2 = insert, 3 = delete
+*/
 int main() {
     // COLLECTING DATA FOR VECTORS
+    int data_results[][][];
     ifstream fin_vector("codes.txt");
     auto start = chrono::high_resolution_clock::now();
     vector<string> vector_example;
