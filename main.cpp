@@ -73,6 +73,7 @@ int main() {
                 vector_example.erase(vector_example.begin() + vector_midpoint);
                 end = chrono::high_resolution_clock::now();
                 auto vector_example_delete = duration_cast<microseconds>(end - start);
+                data_results[0][j][3] = vector_example_delete.count();
             }
         }
 
@@ -176,10 +177,34 @@ int main() {
     // for adding up all the times for each set of data 
     for (int i = 0; i < TYPES; i++){
         if (i == 0){ // adding up vector data
-            
             for (int j = 0; j < TRIALS; j++){
-                data_results[0][15][0] = data_results[0][15][0] + data_results[0][j][0]; // tested, all works as expected
-                cout << data_results[0][j][3] << endl; // delete is possibly not working
+                data_results[0][15][0] = data_results[0][15][0] + data_results[0][j][0]; // adds up all read values
+                data_results[0][15][1] = data_results[0][15][1] + data_results[0][j][1]; // all sort values
+                data_results[0][15][2] = data_results[0][15][2] + data_results[0][j][2]; // all insert values
+                data_results[0][15][3] = data_results[0][15][3] + data_results[0][j][3]; // all delete values
+            }
+            data_results[0][15][0] = data_results[0][15][0] / 15;
+            data_results[0][15][0] = data_results[0][15][0] / 15;
+            data_results[0][15][0] = data_results[0][15][0] / 15;
+            data_results[0][15][0] = data_results[0][15][0] / 15;
+            
+        }
+
+        if (i == 1){ // adding up list data
+            for (int j = 0; j < TRIALS; j++){
+                data_results[1][15][0] = data_results[1][15][0] + data_results[1][j][0]; // adds up all read values
+                data_results[1][15][1] = data_results[1][15][1] + data_results[1][j][1]; // all sort values
+                data_results[1][15][2] = data_results[1][15][2] + data_results[1][j][2]; // all insert values
+                data_results[1][15][3] = data_results[1][15][3] + data_results[1][j][3]; // all delete values
+            }
+        }
+
+        if(i == 2){ // adding up set data
+            for (int j = 0; j < TRIALS; j++){
+                data_results[2][15][0] = data_results[2][15][0] + data_results[2][j][0]; // adds up all read values
+                // sets are automatically sorted
+                data_results[2][15][2] = data_results[2][15][2] + data_results[2][j][2]; // all insert values
+                data_results[2][15][3] = data_results[2][15][3] + data_results[2][j][3]; // all delete values
             }
         }
     }
