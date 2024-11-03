@@ -14,6 +14,9 @@ using namespace std;
 using namespace std::chrono;
 
 string TEST_CODE = "TESTCODE";
+const int TYPES = 3;
+const int TRIALS = 15;
+const int RESULTS = 4;
 
 /* first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
       - first cube of array will represent the 3 tests (size of 3)
@@ -22,9 +25,17 @@ string TEST_CODE = "TESTCODE";
       - third cube of array will hold the average of each set of trials (size of 4)
         - 0 = read, 1 = sort, 2 = insert, 3 = delete
 */
+
+// currently rewriting my code to organize it in loops, and to achieve repeatability
 int main() {
     // COLLECTING DATA FOR VECTORS
-    int data_results[][][];
+    int data_results[TYPES][TRIALS][RESULTS];
+    vector<string> vector_example;
+    for (int i = 0; i < TYPES; i++){
+        ifstream fin("codes.txt");
+        auto start = chrono::high_resolution_clock;
+
+    }
     ifstream fin_vector("codes.txt");
     auto start = chrono::high_resolution_clock::now();
     vector<string> vector_example;
@@ -37,6 +48,7 @@ int main() {
     fin_vector.close();
     auto end = chrono::high_resolution_clock::now();
     auto vector_example_read = duration_cast<microseconds>(end - start);
+
 
     // sorting the vector
     start = chrono::high_resolution_clock::now();
