@@ -41,13 +41,13 @@ int main() {
                 ifstream fin("codes.txt");
                 auto start = chrono::high_resolution_clock::now();
 
-                for (int i = 0; i < FILE_SIZE; i++){
+                for (int k = 0; k < FILE_SIZE; k++){
                     getline(fin_vector, temp_string);
                     vector_example.push_back(temp_string);
                 }
                 auto end = chrono::high_resolution_clock::now();
                 auto vector_example_read = duration_cast<microseconds>(end - start);
-                data_results[0][j] = vector_example_read.count();
+                data_results[0][j][0] = vector_example_read.count();
                 fin.close();
             }
         }
