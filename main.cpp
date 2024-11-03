@@ -74,6 +74,7 @@ int main() {
                 end = chrono::high_resolution_clock::now();
                 auto vector_example_delete = duration_cast<microseconds>(end - start);
             }
+        }
 
         if (i == 1) { // if i == 1, which represents the list sets of data
             for (int j = 0; j < TRIALS; j++){
@@ -102,43 +103,46 @@ int main() {
                 // inserting into the list
                 int list_midpoint = list_example.size() / 2;
                 start = chrono::high_resolution_clock::now();
-                auto list_iter = list_example.begin();
+                auto list_iter_ins = list_example.begin();
                 for (int iter = 0; iter < list_midpoint; iter++){
-                    list_iter++;
+                    list_iter_ins++;
                 }
 
-                list_example.insert(list_iter, TEST_CODE);
+                list_example.insert(list_iter_ins, TEST_CODE);
                 end = chrono::high_resolution_clock::now();
                 auto list_example_insert = duration_cast<microseconds>(end - start);
                 data_results[1][j][2] = list_example_insert.count();
-                
+
+                // divider (erase later) -----------------------------
+                // deleteing from the list
+                start = chrono::high_resolution_clock::now();
+                auto list_iter_del = list_example.begin();
+                for (int iter = 0; iter < list_midpoint; iter++){
+                    list_iter_del++;
+                }
+
+                list_example.erase(list_iter_del);
+                end = chrono::high_resolution_clock::now();
+                auto list_example_delete = duration_cast<microseconds>(end - start);
+                data_results[1][j][3] = list_example_delete.count();
 
 
             }
-        }    
         }
+        if (i == 2) { // if i ==2, which represents the set sets of data
+            for (int j = 0; j < TRIALS; j++){
+                set<string> set_example;
+                ifstream fin("codes.txt");
+                for (int k = 0; k < FILE_SIZE; k++){
+                    
+                }
+            }
+
+        }
+
+        
         
     }
-
-    // inserting "TESTCODE" into the middle of the list
-    int list_midpoint = list_example.size();
-    list_midpoint = list_midpoint / 2; // should be equal to 10000
-    auto list_iter = list_example.begin(); // iterator to the beginning of the list
-    for (int i = 0; i <= list_midpoint; i++){ 
-        list_iter++; // traversing through the list, iterating with each iteration
-    }
-
-    start = chrono::high_resolution_clock::now(); 
-    list_example.insert(list_iter, TEST_CODE); // inserts TEST_CODE at index list_iter - 1, which should be 10000 - 1 == 9999
-    end = chrono::high_resolution_clock::now();
-    auto list_example_insert = duration_cast<microseconds>(end - start);
-
-    // deleting the middle element
-    list_iter--; // since list.erase(iter) erases the element at the iter index, we need to delete the element at index 9999
-    start = chrono::high_resolution_clock::now();
-    list_example.erase(list_iter); // NOTE: .erase() takes in the iter of the element to be deleted as the parameter
-    end = chrono::high_resolution_clock::now();
-    auto list_example_delete = duration_cast<microseconds>(end - start);
 
     // beginning collecting data for SETS
     ifstream fin_set("codes.txt");
