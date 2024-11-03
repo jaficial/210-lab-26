@@ -1,6 +1,6 @@
 // COMSC-210 | Lab 26 | Jed Aficial
 // github link: https://github.com/jaficial/210-lab-26
-//
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -13,9 +13,9 @@
 using namespace std;
 using namespace std::chrono;
 
-// ORGANIZE CODE FIRST
 string TEST_CODE = "TESTCODE";
 
+// first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
 int main() {
     // COLLECTING DATA FOR VECTORS
     ifstream fin_vector("codes.txt");
