@@ -147,36 +147,37 @@ int main() {
                 // Inserting into the set
                 auto set_iter = set_example.begin();
                 int set_midpoint = set_example.size() / 2;
-
+                start = chrono::high_resolution_clock::now();
                 for (int iter = 0; iter < set_midpoint; iter++){
                     set_iter++;
                 }
+                set_example.insert(set_iter, TEST_CODE);
+                end = chrono::high_resolution_clock::now();
+                auto set_example_insert = duration_cast<microseconds>(end - start);
+                data_results[2][j][2] = set_example_insert.count();
+
+                // divider (erase later) -------------------------
+                // Deleting from the set
+                auto set_iter_del = set_example.begin();
+                start = chrono::high_resolution_clock::now();
+                for (int iter = 0; iter < set_midpoint; iter++){
+                    set_iter_del++;
+                }
+                set_example.erase(set_iter_del);
+                end = chrono::high_resolution_clock::now();
+                auto set_example_delete = duration_cast<microseconds>(end - start);
+                data_results[2][j][3] = set_example_delete.count();
             }
+
             int set_example_sort = 0;
         }
+    }
 
-        
+    for (int i = 0; i < 15; i++){
         
     }
 
-    // Inserting "TESTCODE" into the middle of the set
-    auto set_iter = set_example.begin(); // need to receive iterator starting at the beginning of the set, similar to lists
-    int set_midpoint = set_example.size(); 
-    set_midpoint = set_midpoint / 2;
 
-    for(int i = 0; i < set_midpoint; i++){ // iterate through set, similar to how we must iterate through the list previously
-        set_iter++;
-    }
-    start = chrono::high_resolution_clock::now();
-    set_example.insert(set_iter, TEST_CODE); // .insert(iter(index), value of element to store)
-    end = chrono::high_resolution_clock::now();
-    auto set_example_insert = duration_cast<microseconds>(end - start);
-
-    // Deleting the middle element of a set
-    start = chrono::high_resolution_clock::now();
-    set_example.erase(set_iter);
-    end = chrono::high_resolution_clock::now();
-    auto set_example_delete = duration_cast<microseconds>(end - start);
     
     // output of the data
     cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
