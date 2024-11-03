@@ -175,16 +175,18 @@ int main() {
     // for adding up all the times for each set of data 
     for (int i = 0; i < TYPES; i++){
         if (i == 0){ // adding up vector data
+        data_results[0][15][0] = 0;
             for (int j = 0; j < TRIALS; j++){
+                cout << data_results[0][15][0] << endl; 
                 data_results[0][15][0] = data_results[0][15][0] + data_results[0][j][0]; // adds up all read values
                 data_results[0][15][1] = data_results[0][15][1] + data_results[0][j][1]; // all sort values
                 data_results[0][15][2] = data_results[0][15][2] + data_results[0][j][2]; // all insert values
                 data_results[0][15][3] = data_results[0][15][3] + data_results[0][j][3]; // all delete values
             }
             data_results[0][15][0] = data_results[0][15][0] / 15; // vector average for read
-            data_results[0][15][1] = data_results[0][15][0] / 15; // vector average for sort
-            data_results[0][15][2] = data_results[0][15][0] / 15; // vector average for insert
-            data_results[0][15][3] = data_results[0][15][0] / 15; // vector average for delete
+            data_results[0][15][1] = data_results[0][15][1] / 15; // vector average for sort
+            data_results[0][15][2] = data_results[0][15][2] / 15; // vector average for insert
+            data_results[0][15][3] = data_results[0][15][3] / 15; // vector average for delete
             
         }
 
@@ -218,12 +220,12 @@ int main() {
     // The averages are held in the i and j positions in data_results[i][15][j]
     
     // output of the data
-    cout << "Number of simulations: 15" << endl;
-    cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
-    cout << setw(10) << "Read" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][0] << setw(10) << data_results[2][15][0] << endl;
-    cout << setw(10) << "Sort" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][1] << setw(10) << set_example_sort << endl;
-    cout << setw(10) << "Insert" << setw(10) << vector_example_insert.count() << setw(10) << list_example_insert.count() << setw(10) << set_example_insert.count() << endl;
-    cout << setw(10) << "Delete" << setw(10) << vector_example_delete.count() << setw(10) << list_example_delete.count() << setw(10) << set_example_delete.count() << endl;
+    // cout << "Number of simulations: 15" << endl;
+    // cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
+    // cout << setw(10) << "Read" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][0] << setw(10) << data_results[2][15][0] << endl;
+    // cout << setw(10) << "Sort" << setw(10) << data_results[0][15][1] << setw(10) << data_results[1][15][1] << setw(10) << set_example_sort << endl;
+    // cout << setw(10) << "Insert" << setw(10) << data_results[0][15][2] << setw(10) << data_results[1][15][2] << setw(10) << data_results[2][15][3] << endl;
+    // cout << setw(10) << "Delete" << setw(10) << data_results[0][15][3] << setw(10) << data_results[1][15][3] << setw(10) << data_results[2][15][3] << endl;
 
     return 0;
 }
