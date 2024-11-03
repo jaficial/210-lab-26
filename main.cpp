@@ -19,15 +19,16 @@ const int TRIALS = 15;
 const int RESULTS = 4;
 const int FILE_SIZE = 20000;
 
-/* first need to rewrite code into 2d array, then will be able to have 3d array to store data averages
+/*
       - first cube of array will represent the 3 tests (size of 3)
         - 0 = vector, 1 = list, 2 = sets
-      - second cube of array will represent 15 trials for each of the 3 types (size of 45 total elements? )
+      - second cube of array will represent 15 trials for each of the 3 types
+        - size of second cube will be 16, in order to account for a place to hold the final average
       - third cube of array will hold the average of each set of trials (size of 4)
         - 0 = read, 1 = sort, 2 = insert, 3 = delete
 */
 
-// currently rewriting my code to organize it in loops, and to achieve repeatability
+// NOTE: Rewrote code in order to organize all functions of the code in for loops to achieve repeatability
 int main() {
     // COLLECTING DATA FOR VECTORS
     int data_results[TYPES][16][RESULTS];
@@ -175,9 +176,12 @@ int main() {
     // for adding up all the times for each set of data 
     for (int i = 0; i < TYPES; i++){
         if (i == 0){ // adding up vector data
+        // need to initialize each element with 0 before adding all the values together
         data_results[0][15][0] = 0;
+        data_results[0][15][1] = 0;
+        data_results[0][15][2] = 0;
+        data_results[0][15][3] = 0;
             for (int j = 0; j < TRIALS; j++){
-                cout << data_results[0][15][0] << endl; 
                 data_results[0][15][0] = data_results[0][15][0] + data_results[0][j][0]; // adds up all read values
                 data_results[0][15][1] = data_results[0][15][1] + data_results[0][j][1]; // all sort values
                 data_results[0][15][2] = data_results[0][15][2] + data_results[0][j][2]; // all insert values
@@ -191,6 +195,10 @@ int main() {
         }
 
         if (i == 1){ // adding up list data
+            data_results[1][15][0] = 0;
+            data_results[1][15][1] = 0;
+            data_results[1][15][2] = 0;
+            data_results[1][15][3] = 0;
             for (int j = 0; j < TRIALS; j++){
                 data_results[1][15][0] = data_results[1][15][0] + data_results[1][j][0]; // adds up all read values
                 data_results[1][15][1] = data_results[1][15][1] + data_results[1][j][1]; // all sort values
@@ -204,6 +212,10 @@ int main() {
         }
 
         if(i == 2){ // adding up set data
+            data_results[2][15][0] = 0;
+            data_results[2][15][1] = 0;
+            data_results[2][15][2] = 0;
+            data_results[2][15][3] = 0;
             for (int j = 0; j < TRIALS; j++){
                 data_results[2][15][0] = data_results[2][15][0] + data_results[2][j][0]; // adds up all read values
                 // sets are automatically sorted
@@ -220,12 +232,12 @@ int main() {
     // The averages are held in the i and j positions in data_results[i][15][j]
     
     // output of the data
-    // cout << "Number of simulations: 15" << endl;
-    // cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
-    // cout << setw(10) << "Read" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][0] << setw(10) << data_results[2][15][0] << endl;
-    // cout << setw(10) << "Sort" << setw(10) << data_results[0][15][1] << setw(10) << data_results[1][15][1] << setw(10) << set_example_sort << endl;
-    // cout << setw(10) << "Insert" << setw(10) << data_results[0][15][2] << setw(10) << data_results[1][15][2] << setw(10) << data_results[2][15][3] << endl;
-    // cout << setw(10) << "Delete" << setw(10) << data_results[0][15][3] << setw(10) << data_results[1][15][3] << setw(10) << data_results[2][15][3] << endl;
+    cout << "Number of simulations: 15" << endl;
+    cout << setw(10) << "Operation" << setw(10) << "Vector" << setw(10) << "List" << setw(10) << "Set" << endl;
+    cout << setw(10) << "Read" << setw(10) << data_results[0][15][0] << setw(10) << data_results[1][15][0] << setw(10) << data_results[2][15][0] << endl;
+    cout << setw(10) << "Sort" << setw(10) << data_results[0][15][1] << setw(10) << data_results[1][15][1] << setw(10) << set_example_sort << endl;
+    cout << setw(10) << "Insert" << setw(10) << data_results[0][15][2] << setw(10) << data_results[1][15][2] << setw(10) << data_results[2][15][2] << endl;
+    cout << setw(10) << "Delete" << setw(10) << data_results[0][15][3] << setw(10) << data_results[1][15][3] << setw(10) << data_results[2][15][3] << endl;
 
     return 0;
 }
